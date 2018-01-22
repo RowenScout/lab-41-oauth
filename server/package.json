@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "lint": "eslint .",
-    "start": "node index.js",
+    "start": "babel-node index.js",
     "watch": "nodemon index.js",
     "test": "jest --runInBand",
     "test-watch": "jest --watch --runInBand",
@@ -30,8 +30,10 @@
     "superagent": "^3.5.2"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "faker": "^4.1.0",
     "jest": "^20.0.4",
+    "live-server": "^1.2.0",
     "nodemon": "^1.11.0"
   }
 }

@@ -1,32 +1,23 @@
 401 JS --  Lab 41 OAUTH BACKEND
 ===
 
-## Submission Instructions
-  * Work in a fork of this repository
-  * Work in a branch on your fork
-  * Write all of your code in a directory named `lab-` + `<your name>` **e.g.** `lab-duncan`
-  * Submit a pull request to this repository
-  * Submit a link to your pull request on canvas
-  * Submit a question, observation, and how long you spent on canvas  
-  
-## Learning Objectives  
-* Students will learn to add Google OAuth to an express/monogo app
+### Setup
 
-## Requirements  
-#### Configuration  
-* create a copy of the slugchat-backend-starter-code to `/lab-<yourname>/slugchat-backend`
-* create a `/lab-<yourname>`/slugchat-fontend directory
+1. In one terminal `cd server` from root dir and run an `npm i` then run `npm run watch`
+In this dir, create a .env file that contains the following: 
+PORT=3000
+API_URL=http://localhost:3000
+NODE_ENV=dev
+CLIENT_URL=http://localhost:8080
+CORS_ORIGINS=http://localhost:8080
+SECRET='Iamheasyouaremeandwearealltogether'
+GOOGLE_CLIENT_ID=your Client ID here
+GOOGLE_CLIENT_SECRET=your client Secret here
+MONGODB_URI=mongodb://localhost/talktome
+2. In a 2nd terminal `cd client` from root dir and run `npm i`. Then run `live-server` from /client
+3. In a 3rd terminal `cd server` and make a 'db' directory, and start mongo.
 
-#### Feature Tasks  
-#### backend
-* create an app on the google dev console
- * configure oauth credentials to suport a client app on `http://localhost:8080`
- * configure oauth credentials to suport a server redirect uri  to `http://localhost:3000/oauth/google/code`
-* create a backend route `GET /oauth/google/code` for handling google oauth 
+### Usage
 
-#### frontend 
-* create an index.html with an anchor tag pointing to the google authoraztion page 
- * configure the query string will correct key value pairs
-
-####  Documentation  
-Write a description of the project in your README.md
+1. Click link on browser to 'Login with Google'
+2. Select a google account

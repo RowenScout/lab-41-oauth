@@ -12,7 +12,7 @@ import Mongoose, {Schema} from 'mongoose';
 const userSchema =    new Schema({
     email: {type: String, required: true, unique: true},
     username: {type: String, required: true, unique: true},
-    passwordHash: {type: String, required: true},
+    passwordHash: {type: String},
     tokenSeed: {type: String, unique: true, default: ''},
 });
 
@@ -27,8 +27,8 @@ userSchema.methods.passwordCompare = function(password){
         });
 };
 
-userSchema.methods.tokenCreate    = function(){
-  
+userSchema.methods.tokenCreate = function(){
+
     this.tokenSeed = randomBytes(32).toString('base64');
   
     return this.save()
@@ -60,6 +60,30 @@ User.createFromSignup = function (user) {
             return new User(data).save();
         });
     
+};
+
+User.createFromOAuth = function(googleUser) {
+    if(!googleUser || !googleUser.email) {
+        return Promise.reject(createError(400, 'ERROR: Missing email or password'));
+    } 
+
+    return User.findOne({email: googleUser.email})
+        .then(user => {
+            
+            if(!user) throw new Error ("ERROR: User not found");
+            console.log(`Hello ${user.username}!`);
+            return user;
+        })
+        .catch(error => {
+
+            let username = googleUser.email.split('@')[0];
+            let email = googleUser.email;
+
+            return new User ({
+                username: username,
+                email: email
+            }).save();
+        })
 };
 
 // INTERFACE
